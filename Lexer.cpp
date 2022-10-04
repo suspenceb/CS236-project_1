@@ -93,23 +93,28 @@ void Lexer::Run(std::string& input) {
 
                 string sentInput = input.substr(0, maxRead);
                 Token* newToken = maxAuT->CreateToken(sentInput, lineNumber);
-                tokens.push_back(newToken);
+                //
+                // not adding any comment tokens for project 2!!!
+                //
+                if(newToken->getSetType() != TokenType::COMMENT)tokens.push_back(newToken);
                 lineNumber += maxAuT->NewLinesRead();
-                /* set newToken to maxAutomaton.CreateToken(...)
-                        increment lineNumber by maxAutomaton.NewLinesRead()
-                        add newToken to collection of all tokens*/
-            }
+               }
             input.erase(0, maxRead);
         }
     }
     //add end of file token to all tokens
     maxAuT = new eofAutomaton();
     Token* newToken = maxAuT->CreateToken(input,lineNumber);
+
     tokens.push_back(newToken);
     int i = 0;
     for(Token* tokes:tokens) {
-        cout << tokes->tokenToString();
+        //cout << tokes->tokenToString();
         i++;
     }
-    cout << "Total Tokens = " << i;
+    //cout << "Total Tokens = " << i;
+}
+
+const vector<Token *> &Lexer::getTokens() const {
+    return tokens;
 }

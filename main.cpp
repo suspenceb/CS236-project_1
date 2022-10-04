@@ -1,4 +1,5 @@
 #include "Lexer.h"
+#include "Parser.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,7 +9,8 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-    Lexer* lexer = new Lexer();
+    auto* lexer = new Lexer();
+
 
     if (argc != 2) {
         cout << "usage: " << argv[0] << " input_file" << endl;
@@ -24,9 +26,10 @@ int main(int argc, char** argv) {
     }
 
     string fileboi = string((istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
-    string test1 = "#|";
-    lexer->Run(fileboi);
+    string test1 = "Schemes:";
+    lexer->Run(test1);
+    auto* parser = new Parser(lexer->getTokens());
     delete lexer;
-
+    delete parser;
     return 0;
 }

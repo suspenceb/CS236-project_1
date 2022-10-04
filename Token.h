@@ -21,6 +21,8 @@ public:
     Token(TokenType type, std::string description, int line);
     string autoToString(TokenType);
     string tokenToString();
+
+    TokenType getSetType() const;
     // TODO: add other needed methods
 };
 
