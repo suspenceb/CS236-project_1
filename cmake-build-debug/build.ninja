@@ -224,6 +224,34 @@ build CMakeFiles/236project_1.dir/Parser.cpp.obj: CXX_COMPILER__236project_1_Deb
   OBJECT_DIR = CMakeFiles\236project_1.dir
   OBJECT_FILE_DIR = CMakeFiles\236project_1.dir
 
+build CMakeFiles/236project_1.dir/DatalogProgram.cpp.obj: CXX_COMPILER__236project_1_Debug C$:/Users/suspe/Documents/CS236/236project_1/DatalogProgram.cpp || cmake_object_order_depends_target_236project_1
+  DEP_FILE = CMakeFiles\236project_1.dir\DatalogProgram.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IC:/Users/suspe/Documents/CS236/236project_1/.
+  OBJECT_DIR = CMakeFiles\236project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\236project_1.dir
+
+build CMakeFiles/236project_1.dir/Predicate.cpp.obj: CXX_COMPILER__236project_1_Debug C$:/Users/suspe/Documents/CS236/236project_1/Predicate.cpp || cmake_object_order_depends_target_236project_1
+  DEP_FILE = CMakeFiles\236project_1.dir\Predicate.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IC:/Users/suspe/Documents/CS236/236project_1/.
+  OBJECT_DIR = CMakeFiles\236project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\236project_1.dir
+
+build CMakeFiles/236project_1.dir/Rule.cpp.obj: CXX_COMPILER__236project_1_Debug C$:/Users/suspe/Documents/CS236/236project_1/Rule.cpp || cmake_object_order_depends_target_236project_1
+  DEP_FILE = CMakeFiles\236project_1.dir\Rule.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IC:/Users/suspe/Documents/CS236/236project_1/.
+  OBJECT_DIR = CMakeFiles\236project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\236project_1.dir
+
+build CMakeFiles/236project_1.dir/Parameter.cpp.obj: CXX_COMPILER__236project_1_Debug C$:/Users/suspe/Documents/CS236/236project_1/Parameter.cpp || cmake_object_order_depends_target_236project_1
+  DEP_FILE = CMakeFiles\236project_1.dir\Parameter.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -IC:/Users/suspe/Documents/CS236/236project_1/.
+  OBJECT_DIR = CMakeFiles\236project_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\236project_1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target 236project_1
@@ -232,7 +260,7 @@ build CMakeFiles/236project_1.dir/Parser.cpp.obj: CXX_COMPILER__236project_1_Deb
 #############################################
 # Link the executable 236project_1.exe
 
-build 236project_1.exe: CXX_EXECUTABLE_LINKER__236project_1_Debug CMakeFiles/236project_1.dir/ColonAutomaton.cpp.obj CMakeFiles/236project_1.dir/ColonDashAutomaton.cpp.obj CMakeFiles/236project_1.dir/Lexer.cpp.obj CMakeFiles/236project_1.dir/main.cpp.obj CMakeFiles/236project_1.dir/Token.cpp.obj CMakeFiles/236project_1.dir/CommaAutomaton.cpp.obj CMakeFiles/236project_1.dir/PeriodAutomaton.cpp.obj CMakeFiles/236project_1.dir/Q_MarkAutomaton.cpp.obj CMakeFiles/236project_1.dir/LeftParenAutomaton.cpp.obj CMakeFiles/236project_1.dir/RightParenAutomaton.cpp.obj CMakeFiles/236project_1.dir/MultiplyAutomaton.cpp.obj CMakeFiles/236project_1.dir/AddAutomaton.cpp.obj CMakeFiles/236project_1.dir/SchemesAutomaton.cpp.obj CMakeFiles/236project_1.dir/FactsAutomaton.cpp.obj CMakeFiles/236project_1.dir/RulesAutomaton.cpp.obj CMakeFiles/236project_1.dir/QueriesAutomaton.cpp.obj CMakeFiles/236project_1.dir/UndefinedAutomaton.cpp.obj CMakeFiles/236project_1.dir/eofAutomaton.cpp.obj CMakeFiles/236project_1.dir/idAutomaton.cpp.obj CMakeFiles/236project_1.dir/commentAutomaton.cpp.obj CMakeFiles/236project_1.dir/blockCommentAutomaton.cpp.obj CMakeFiles/236project_1.dir/blockCommentErrorAutomaton.cpp.obj CMakeFiles/236project_1.dir/stringAutomaton.cpp.obj CMakeFiles/236project_1.dir/stringErrorAutomaton.cpp.obj CMakeFiles/236project_1.dir/Parser.cpp.obj
+build 236project_1.exe: CXX_EXECUTABLE_LINKER__236project_1_Debug CMakeFiles/236project_1.dir/ColonAutomaton.cpp.obj CMakeFiles/236project_1.dir/ColonDashAutomaton.cpp.obj CMakeFiles/236project_1.dir/Lexer.cpp.obj CMakeFiles/236project_1.dir/main.cpp.obj CMakeFiles/236project_1.dir/Token.cpp.obj CMakeFiles/236project_1.dir/CommaAutomaton.cpp.obj CMakeFiles/236project_1.dir/PeriodAutomaton.cpp.obj CMakeFiles/236project_1.dir/Q_MarkAutomaton.cpp.obj CMakeFiles/236project_1.dir/LeftParenAutomaton.cpp.obj CMakeFiles/236project_1.dir/RightParenAutomaton.cpp.obj CMakeFiles/236project_1.dir/MultiplyAutomaton.cpp.obj CMakeFiles/236project_1.dir/AddAutomaton.cpp.obj CMakeFiles/236project_1.dir/SchemesAutomaton.cpp.obj CMakeFiles/236project_1.dir/FactsAutomaton.cpp.obj CMakeFiles/236project_1.dir/RulesAutomaton.cpp.obj CMakeFiles/236project_1.dir/QueriesAutomaton.cpp.obj CMakeFiles/236project_1.dir/UndefinedAutomaton.cpp.obj CMakeFiles/236project_1.dir/eofAutomaton.cpp.obj CMakeFiles/236project_1.dir/idAutomaton.cpp.obj CMakeFiles/236project_1.dir/commentAutomaton.cpp.obj CMakeFiles/236project_1.dir/blockCommentAutomaton.cpp.obj CMakeFiles/236project_1.dir/blockCommentErrorAutomaton.cpp.obj CMakeFiles/236project_1.dir/stringAutomaton.cpp.obj CMakeFiles/236project_1.dir/stringErrorAutomaton.cpp.obj CMakeFiles/236project_1.dir/Parser.cpp.obj CMakeFiles/236project_1.dir/DatalogProgram.cpp.obj CMakeFiles/236project_1.dir/Predicate.cpp.obj CMakeFiles/236project_1.dir/Rule.cpp.obj CMakeFiles/236project_1.dir/Parameter.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\236project_1.dir

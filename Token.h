@@ -12,7 +12,7 @@ class Token
 {
 private:
     TokenType setType;
-    string setDescrip;
+    string tokenDescrip;
     string setLine;
     // TODO: add member variables for information needed by Token
 
@@ -21,6 +21,8 @@ public:
     Token(TokenType type, std::string description, int line);
     string autoToString(TokenType);
     string tokenToString();
+
+    const string &getTokenDescrip() const;
 
     TokenType getSetType() const;
     // TODO: add other needed methods

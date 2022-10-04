@@ -26,8 +26,20 @@ int main(int argc, char** argv) {
     }
 
     string fileboi = string((istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
-    string test1 = "Schemes:";
-    lexer->Run(test1);
+    string test1 = "Schemes:\n"
+                   "  snap(S,N,A,P)\n"
+                   "  HasSameAddress(X,Y)\n"
+                   "\n"
+                   "Facts:\n"
+                   "  snap('12345','C. Brown','12 Apple','555-1234').\n"
+                   "  snap('33333','Snoopy','12 Apple','555-1234').\n"
+                   "\n"
+                   "Rules:\n"
+                   "  HasSameAddress(X,Y) :- snap(A,X,B,C),snap(D,Y,B,E).\n"
+                   "\n"
+                   "Queries:\n"
+                   "  HasSameAddress('Snoopy',Who)?";
+    lexer->Run(fileboi);
     auto* parser = new Parser(lexer->getTokens());
     delete lexer;
     delete parser;

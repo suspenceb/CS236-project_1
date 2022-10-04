@@ -107,12 +107,12 @@ void Lexer::Run(std::string& input) {
     Token* newToken = maxAuT->CreateToken(input,lineNumber);
 
     tokens.push_back(newToken);
-    int i = 0;
+    /*int i = 0;
     for(Token* tokes:tokens) {
         //cout << tokes->tokenToString();
         i++;
     }
-    //cout << "Total Tokens = " << i;
+    //cout << "Total Tokens = " << i;*/
 }
 
 const vector<Token *> &Lexer::getTokens() const {
