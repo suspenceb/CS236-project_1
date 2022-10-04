@@ -11,7 +11,7 @@
 244	365	6853307467611704	236project_1.exe	9e0194100ce91381
 8	645	6853231086535962	CMakeFiles/236project_1.dir/Q_MarkAutomaton.cpp.obj	3847cb151e4f574e
 591	1179	6853073193037723	CMakeFiles/236project_1.dir/Automatons/MultiplyAutomaton.cpp.obj	64fc5a895b6ebf88
-0	210	6853368954167747	build.ninja	c33a0ac7ad3f8aec
+0	210	6865458460290865	build.ninja	c33a0ac7ad3f8aec
 7	582	6853073187112791	CMakeFiles/236project_1.dir/Automatons/ColonDashAutomaton.cpp.obj	b16d9dca202593ae
 3	591	6853073187250420	CMakeFiles/236project_1.dir/Automatons/ColonAutomaton.cpp.obj	48644a0be782fc0a
 14	670	6853073188047035	CMakeFiles/236project_1.dir/Automatons/CommaAutomaton.cpp.obj	5f105deae13e9e6d
@@ -39,11 +39,10 @@
 5	640	6853231086479022	CMakeFiles/236project_1.dir/PeriodAutomaton.cpp.obj	c34c2189effca1d1
 19	830	6853231088325303	CMakeFiles/236project_1.dir/RightParenAutomaton.cpp.obj	6fc45749a9097639
 11	658	6853231086701318	CMakeFiles/236project_1.dir/LeftParenAutomaton.cpp.obj	cd1399e25dadfe07
-3	268	6853283832332389	CMakeFiles/236project_1.dir/stringAutomaton.cpp.obj	8a64711311bf25ca
+3	885	6854783868669931	CMakeFiles/236project_1.dir/stringAutomaton.cpp.obj	8a64711311bf25ca
 3	237	6853282421507354	CMakeFiles/236project_1.dir/stringErrorAutomaton.cpp.obj	1dcf334b9bdb8e45
 781	1399	6853231094227021	CMakeFiles/236project_1.dir/AddAutomaton.cpp.obj	57c672a3a77862f4
 864	1405	6853231094336121	CMakeFiles/236project_1.dir/RulesAutomaton.cpp.obj	7ff374fd921ae343
 914	1548	6853231095777880	CMakeFiles/236project_1.dir/SchemesAutomaton.cpp.obj	6d3ca30765b57408
 1239	1657	6853231096964074	CMakeFiles/236project_1.dir/eofAutomaton.cpp.obj	c6af2601354f544c
 1258	1671	6853231097096056	CMakeFiles/236project_1.dir/idAutomaton.cpp.obj	954f3f714726018c
-3	885	6854783868669931	CMakeFiles/236project_1.dir/stringAutomaton.cpp.obj	8a64711311bf25ca
