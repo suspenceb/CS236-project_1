@@ -13,10 +13,13 @@ private:
     int tokenCounter = 0;
     std::vector<Token*> parserTokens;
     std::vector<Predicate*> schemesVector;
+    std::vector<Predicate*> factVector;
+    std::vector<Predicate*> queryVector;
     void match(TokenType typeToMatch);
     void parseDatalogProgram();
     void parseScheme();
-    void parseIDlist(Parameter *pParameter, vector<struct Parameter *> vector);
+    void parseIDlist();
+
     void parseSchemeList();
     void parseFactList();
     void parseFact();
@@ -36,6 +39,10 @@ public:
     explicit Parser(vector<Token*> tokens);
     ~Parser();
 
+    vector<Parameter*> schemeParamVec;
+    vector<Parameter*> factParamVec;
+    vector<Parameter*> queryParamVec;
+    vector<Parameter*> ruleHeadParamVec;
 };
 
 

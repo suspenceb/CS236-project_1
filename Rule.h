@@ -4,10 +4,12 @@
 
 #ifndef INC_236PROJECT_1_RULE_H
 #define INC_236PROJECT_1_RULE_H
-
-
+#include "Predicate.h"
+#include "vector"
 class Rule {
-
+public:
+    Predicate* headPredicate;
+    vector<Predicate*> bodyPredicates;
 };
 
 

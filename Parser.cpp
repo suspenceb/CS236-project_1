@@ -4,6 +4,7 @@
 
 #include "Parser.h"
 #include "Parameter.h"
+#include "Rule.h"
 #include <iostream>
 #include <utility>
 #include "vector"
@@ -59,40 +60,38 @@ void Parser::parseDatalogProgram() {
 
 void Parser::parseScheme() {
 //scheme   	-> 	ID LEFT_PAREN ID idList RIGHT_PAREN
-
-    auto* schemePred = new Predicate;
     auto* schemeParam = new Parameter;
-    vector<Parameter*> schemeParamVec;
-
+    auto* schemePred = new Predicate;
+    schemeParamVec.clear();
     match(TokenType::ID);
     //cout << parserTokens[tokenCounter - 1]->getTokenDescrip() << endl;
     schemePred->setId(parserTokens[tokenCounter - 1]->getTokenDescrip());//just the name
-
+    //cout << schemePred->getId() <<endl;
     match(TokenType::LEFT_PAREN);
     match(TokenType::ID);
     schemeParam->setP(parserTokens[tokenCounter - 1]->getTokenDescrip());
     schemeParamVec.push_back(schemeParam);
+    //cout << schemeParamVec.at(0)->getP() << endl;
 
-    parseIDlist(schemeParam, schemeParamVec);
+    parseIDlist();
     match(TokenType::RIGHT_PAREN);
 
     schemePred->parameters = schemeParamVec;
     schemesVector.push_back(schemePred);
-    cout << schemesVector[0]->parameters[0]->getP();
+    //cout << schemesVector[schemesVector.size()-1]->parameters[0]->getP();
 }
 
-void Parser::parseIDlist(Parameter* schemeParam, vector<Parameter *> schemeParamVec) {
+void Parser::parseIDlist() {
     //idList->COMMA ID idList | lambda
-
+    auto* idParam = new Parameter;
     if(parserTokens[tokenCounter]->getSetType() == TokenType::COMMA) {
         match(TokenType::COMMA);
         match(TokenType::ID);
 
-        schemeParam->setP(parserTokens[tokenCounter - 1]->getTokenDescrip());
-cout<<'a';
-        schemeParamVec.push_back(schemeParam);
-
-        parseIDlist(schemeParam, schemeParamVec);
+        idParam->setP(parserTokens[tokenCounter - 1]->getTokenDescrip());
+        schemeParamVec.push_back(idParam);
+        ruleHeadParamVec.push_back(idParam);
+        parseIDlist();
     }
     else if (parserTokens[tokenCounter]->getSetType() == TokenType::RIGHT_PAREN) {} //intentionally blank
     else throw (parserTokens[tokenCounter]);
@@ -120,20 +119,33 @@ void Parser::parseFactList() {
 }
 
 void Parser::parseFact() {
+    auto* factParam = new Parameter;
+    auto* factPred = new Predicate;
+    factParamVec.clear();
     //fact    	->	ID LEFT_PAREN STRING stringList RIGHT_PAREN PERIOD
     match(TokenType::ID);
+    factPred->setId(parserTokens[tokenCounter - 1]->getTokenDescrip());
     match(TokenType::LEFT_PAREN);
     match(TokenType::STRING);
+    factParam->setP(parserTokens[tokenCounter - 1]->getTokenDescrip());
+    factParamVec.push_back(factParam);
     parseStringList();
     match(TokenType::RIGHT_PAREN);
     match(TokenType::PERIOD);
+
+    factPred->parameters = factParamVec;
+    factVector.push_back(factPred);
+    //cout << factVector[factVector.size()-1]->parameters[0]->getP();
 }
 
 void Parser::parseStringList() {
+    auto* stringParam = new Parameter;
     //fact    	->	ID LEFT_PAREN STRING stringList RIGHT_PAREN PERIOD
     if(parserTokens[tokenCounter]->getSetType() == TokenType::COMMA){
         match(TokenType::COMMA);
         match(TokenType::STRING);
+        stringParam->setP(parserTokens[tokenCounter - 1]->getTokenDescrip());
+        factParamVec.push_back(stringParam);
         parseStringList();
     }else if(parserTokens[tokenCounter]->getSetType() == TokenType::RIGHT_PAREN){}//Intentionally blank
     else throw(parserTokens[tokenCounter]);
@@ -150,7 +162,14 @@ void Parser::parseRulesList() {
 
 void Parser::parseRules() {
     //rule    	->	headPredicate COLON_DASH predicate predicateList PERIOD
+    auto* ruler = new Rule;
+    auto* ruleHeadPred = new Predicate;
+    ruleHeadParamVec.clear();
+    ruleHeadPred->setId(parserTokens[tokenCounter]->getTokenDescrip());
+    ruler->headPredicate = ruleHeadPred;
     parseHeadPred();
+    ruler->headPredicate->parameters = ruleHeadParamVec;
+    cout << ruler->headPredicate->parameters[0]->getP();
     match(TokenType::COLON_DASH);
     parsePred();
     parsePredList();
@@ -158,19 +177,27 @@ void Parser::parseRules() {
 }
 
 void Parser::parseHeadPred() {
+    auto* ruleHeadParam = new Parameter;
 //headPredicate	->	ID LEFT_PAREN ID idList RIGHT_PAREN
     match(TokenType::ID);
     match(TokenType::LEFT_PAREN);
+    ruleHeadParam->setP(parserTokens[tokenCounter]->getTokenDescrip());
+    ruleHeadParamVec.push_back(ruleHeadParam);
     match(TokenType::ID);
-    parseIDlist(nullptr, vector<struct Parameter *>());
+
+    parseIDlist();
     match(TokenType::RIGHT_PAREN);
 }
 
 void Parser::parsePred() {
     //predicate	->	ID LEFT_PAREN parameter parameterList RIGHT_PAREN
+    auto* predParam = new Parameter;
     match(TokenType::ID);
     match(TokenType::LEFT_PAREN);
     parseParameter();
+    predParam->setP(parserTokens[tokenCounter-1]->getTokenDescrip());
+    //queryParamVec.push_back(predParam);
+
     parseParameterList();
     match(TokenType::RIGHT_PAREN);
 }
@@ -187,9 +214,14 @@ void Parser::parsePredList() {
 
 void Parser::parseParameter() {
     //parameter	->	STRING | ID
+    auto* queryParam = new Parameter;
     if(parserTokens[tokenCounter]->getSetType() == TokenType::STRING){
+        queryParam->setP(parserTokens[tokenCounter]->getTokenDescrip());
+        queryParamVec.push_back(queryParam);
         match(TokenType::STRING);
     }else if (parserTokens[tokenCounter]->getSetType() == TokenType::ID){
+        queryParam->setP(parserTokens[tokenCounter]->getTokenDescrip());
+        queryParamVec.push_back(queryParam);
         match(TokenType::ID);
     }else throw(parserTokens[tokenCounter]);
 }
@@ -206,8 +238,17 @@ void Parser::parseParameterList() {
 
 void Parser::parseQuery() {
     //query	        ->      predicate Q_MARK
+
+    auto* queryPred = new Predicate;
+    queryParamVec.clear();
+    if(parserTokens[tokenCounter]->getSetType() == TokenType::ID) {
+        queryPred->setId(parserTokens[tokenCounter]->getTokenDescrip());
+    }
     parsePred();
     match(TokenType::Q_MARK);
+    queryPred->parameters = queryParamVec;
+    queryVector.push_back(queryPred);
+    //cout << queryVector[queryVector.size()-1]->parameters[0]->getP()<<endl;
 }
 
 void Parser::parseQueryList() {
