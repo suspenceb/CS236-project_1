@@ -10,6 +10,7 @@ class Rule {
 public:
     Predicate* headPredicate;
     vector<Predicate*> bodyPredicates;
+    std::string toString();
 };
 
 

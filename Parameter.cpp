@@ -11,3 +11,9 @@ const std::string &Parameter::getP() const {
 void Parameter::setP(const std::string &p) {
     Parameter::p = p;
 }
+
+std::string Parameter::toString() {
+
+
+    return std::string();
+}

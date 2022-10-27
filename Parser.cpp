@@ -8,6 +8,7 @@
 #include <iostream>
 #include <utility>
 #include "vector"
+#include "DatalogProgram.h"
 
 using namespace std;
 Parser::Parser(vector<Token *> inputTokens) {
@@ -48,10 +49,12 @@ void Parser::parseDatalogProgram() {
         parseQuery();
         parseQueryList();
         match(TokenType::EOF_ENUM);
-        cout << "Success!" << endl;
+        //cout << "Success!" << endl;
+        auto * databoi = new DatalogProgram(schemesVector,factVector,queryVector,ruleVector);
+        //cout << databoi->toString();
     }
     catch (Token* caughtToken) {
-        cout << "Failure!\n  " << caughtToken->tokenToString() << endl;
+        cout << "Failure!\n  " << caughtToken->tokenToString();
     }
     catch(string input){
         cout << input << endl;
@@ -165,14 +168,18 @@ void Parser::parseRules() {
     auto* ruler = new Rule;
     auto* ruleHeadPred = new Predicate;
     ruleHeadParamVec.clear();
+    ruleBodyParamVec.clear();
+    ruleBodyPredVec.clear();
     ruleHeadPred->setId(parserTokens[tokenCounter]->getTokenDescrip());
     ruler->headPredicate = ruleHeadPred;
     parseHeadPred();
     ruler->headPredicate->parameters = ruleHeadParamVec;
-    cout << ruler->headPredicate->parameters[0]->getP();
     match(TokenType::COLON_DASH);
+    ruleBodyParamVec.clear();
     parsePred();
     parsePredList();
+    ruler->bodyPredicates = ruleBodyPredVec;
+    ruleVector.push_back(ruler);
     match(TokenType::PERIOD);
 }
 
@@ -191,14 +198,20 @@ void Parser::parseHeadPred() {
 
 void Parser::parsePred() {
     //predicate	->	ID LEFT_PAREN parameter parameterList RIGHT_PAREN
+    auto* ruleBodyPred = new Predicate;
     auto* predParam = new Parameter;
+    ruleBodyPred->setId(parserTokens[tokenCounter]->getTokenDescrip());
     match(TokenType::ID);
     match(TokenType::LEFT_PAREN);
     parseParameter();
     predParam->setP(parserTokens[tokenCounter-1]->getTokenDescrip());
     //queryParamVec.push_back(predParam);
 
+
     parseParameterList();
+    ruleBodyPred->parameters = ruleBodyParamVec;
+    ruleBodyPredVec.push_back(ruleBodyPred);
+    ruleBodyParamVec.clear();
     match(TokenType::RIGHT_PAREN);
 }
 
@@ -214,14 +227,16 @@ void Parser::parsePredList() {
 
 void Parser::parseParameter() {
     //parameter	->	STRING | ID
-    auto* queryParam = new Parameter;
+    auto* Param = new Parameter;
     if(parserTokens[tokenCounter]->getSetType() == TokenType::STRING){
-        queryParam->setP(parserTokens[tokenCounter]->getTokenDescrip());
-        queryParamVec.push_back(queryParam);
+        Param->setP(parserTokens[tokenCounter]->getTokenDescrip());
+        queryParamVec.push_back(Param);
+        ruleBodyParamVec.push_back(Param);
         match(TokenType::STRING);
     }else if (parserTokens[tokenCounter]->getSetType() == TokenType::ID){
-        queryParam->setP(parserTokens[tokenCounter]->getTokenDescrip());
-        queryParamVec.push_back(queryParam);
+        Param->setP(parserTokens[tokenCounter]->getTokenDescrip());
+        queryParamVec.push_back(Param);
+        ruleBodyParamVec.push_back(Param);
         match(TokenType::ID);
     }else throw(parserTokens[tokenCounter]);
 }
@@ -258,4 +273,20 @@ void Parser::parseQueryList() {
         parseQueryList();
     }else if(parserTokens[tokenCounter]->getSetType() == TokenType::EOF_ENUM){}//intentionally blank
     else throw(parserTokens[tokenCounter]);
+}
+
+const vector<Predicate *> &Parser::getSchemesVector() const {
+    return schemesVector;
+}
+
+const vector<Predicate *> &Parser::getFactVector() const {
+    return factVector;
+}
+
+const vector<Predicate *> &Parser::getQueryVector() const {
+    return queryVector;
+}
+
+const vector<Rule *> &Parser::getRuleVector() const {
+    return ruleVector;
 }

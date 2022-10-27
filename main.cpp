@@ -1,5 +1,6 @@
 #include "Lexer.h"
 #include "Parser.h"
+#include "Interpreter.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -39,9 +40,13 @@ int main(int argc, char** argv) {
                    "\n"
                    "Queries:\n"
                    "  HasSameAddress('Snoopy',Who)?";
-    lexer->Run(fileboi);
+    lexer->Run(test1);
     auto* parser = new Parser(lexer->getTokens());
+
+
+    auto* interpret = new Interpreter(parser->getSchemesVector(),parser->getFactVector(), parser->getQueryVector(), parser->getRuleVector());
     delete lexer;
     delete parser;
+    delete interpret;
     return 0;
 }

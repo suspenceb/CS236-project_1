@@ -20,6 +20,9 @@ public:
 
 public:
     vector<Parameter*> parameters;
+    std::string toString();
+    std::string factString();
+    std::string queryString();
 };
 
 

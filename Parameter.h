@@ -10,6 +10,7 @@ class Parameter {
 private:
     std::string p;
 public:
+    std::string toString();
     const std::string &getP() const;
 
     void setP(const std::string &p);
