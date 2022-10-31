@@ -4,9 +4,8 @@ using namespace std;
 
 Token::Token(TokenType type, string description, int line) {
     setType = type;
-    setDescrip = description;
+    tokenDescrip = description;
     setLine = to_string(line);
-    // TODO: initialize all member variables
 }
 
 string Token::autoToString(TokenType type) {
@@ -37,5 +36,13 @@ string Token::autoToString(TokenType type) {
 }
 
 string Token::tokenToString() {
-    return std::string("(" + autoToString(this->setType) + ",\"" + this->setDescrip + "\"," + this->setLine + ")\n");
+    return std::string("(" + autoToString(this->setType) + ",\"" + this->tokenDescrip + "\"," + this->setLine + ")\n");
+}
+
+TokenType Token::getSetType() const {
+    return setType;
+}
+
+const string &Token::getTokenDescrip() const {
+    return tokenDescrip;
 }
